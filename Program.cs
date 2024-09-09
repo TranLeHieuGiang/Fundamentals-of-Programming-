@@ -1,51 +1,100 @@
-﻿
-using System;
-using System.ComponentModel.Design;
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        //Nguoi choi co tien;
-        Console.WriteLine("Nguoi choi co 1000$ lun nhoe");
-        do
-        {
-            //Nguoi choi bat dau choi;
-            Random rnd = new Random();
-            int com_num = rnd.Next(1, 100);
-            //Console.WriteLine(com_num);
-            int man_num = 0;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 
-            for (int i = 0; i < 10; i++)
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        private void Main(string[] args)
+        {
+            bt01();
+            bt02();
+            bt03();
+        }
+
+        static void bt01()
+        {
+            int m = max(1);
+            m = max(1, 2);
+            Console.WriteLine(m);
+            Console.ReadKey();
+        }
+        static int max(int a, params int[] args)
+        {
+            if (args.Length == 0)
             {
-                    Console.Write("Nhap so doan: ");
-                    man_num = Convert.ToInt32(Console.ReadLine());
-                    if (man_num == com_num)
+                return a;
+            }
+            int m = args[0];
+
+            foreach (int i in args)
+            {
+                if (i > m)
+                    m = i;
+            }
+            return Math.Max(m, a);
+        }
+        static void bt02()
+        {
+            long kq = factorial();
+            Console.WriteLine(kq);
+        }
+        static long factorial(int n)
+        {
+            long f = 1;
+            for (int i = 1; i <= n; i++)
+                f += i;
+            return f;
+        }
+        static long factorial_recursion(int n)
+        {
+            if (n == 0) return 1;
+            return n * factorial_recursion(n - 1);
+        }
+
+        static void bt03()
+        {
+
+            static bool Prime(int number)
+            {
+                for (int i = 2; i <= number / 2; i++) ;
+                if (number % 1 == 0)
+                    return false;
+            }
+            static void PrimeuderN(int n)
+            {
+                for (int i = 1; i <= n; i++)
+                    if (Prime(i))
+                        Console.WriteLine(i);
+            }
+           
+            static void PrimeNnumber(int n)
+            
+            {
+                int count = 0;
+                int number = 1;
+                while (count <= n)
+                {
+                    if(Prime(number))
                     {
-                        Console.Write("Gioi qua gioi qua ~~");
-                        break;
+                        Console.WriteLine(number);
+                        count++;
                     }
-                    else
-                       if (man_num < com_num)
-                        Console.WriteLine("So cua ban nho hon so voi dap an. ");
-                    else Console.WriteLine("So cua ban lon hon so voi dap an. ");
+                }
             }
-            if (man_num != com_num) 
-            Console.WriteLine($"So cua ban la {man_num} nhung dap an la {com_num}. Rat tiec huhu :((( ");
-            
-            Console.WriteLine("Ban co con mun tip tuc cung chung toi? Y/N");
-            Console.WriteLine();
-            string trl = "" + Console.ReadLine();
-            if (trl.ToUpper().Equals(("Y"))) ;
-            {  
-                int solan = Convert.ToInt32(trl);
-                solan++;
-                Console.WriteLine("Ban da nap them 50$ de choi tiep ");
-                break;
-            }
-            
-            //Console.WriteLine("Ban da choi va con lai ");
-            //Console.WriteLine("Hen gap lai ^^ ");
-        } while (true);    
+
+
+
+        }
+
+
+
+
     }
-    
 }
+
