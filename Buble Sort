@@ -1,0 +1,68 @@
+using System;
+internal class Program
+{
+    static void Main()
+    {
+        bt01();
+        bt02();
+    }
+    static void bt01()
+    {
+        int[] nhap = new int[10];
+        Input(nhap);
+        static void Input(int[] nhap)
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < nhap.Length; i++)
+            {
+                nhap[i] = rnd.Next(100);
+            }
+        }
+        PrinArray(nhap);
+        static void PrinArray(int[] nhap)
+        {
+            foreach (int i in nhap)
+                Console.Write($"{i} ");
+
+        }
+        Console.WriteLine();
+        SapXep(nhap);
+        static void SapXep(int[] nhap)
+        {
+            for (int i = 0; i < nhap.Length - 1; i++)
+                for (int j = 0; j < nhap.Length - i - 1; j++)
+                {
+                    if (nhap[j] > nhap[j + 1])
+                    {
+                        int doi = nhap[j];
+                        nhap[j] = nhap[j + 1];
+                        nhap[j + 1] = doi;
+                    }
+                }
+            foreach (int i in nhap)
+            {
+                Console.Write($"{i} ");
+            }
+        }
+    }
+    static void bt02()
+    {
+        Console.WriteLine();
+        Console.Write("Nhap vao chuoi: ");
+        string ChuoiD = Console.ReadLine();
+        ChuoiD = ChuoiD.ToLower();
+        string t = "toi";
+        bool ch = check(ChuoiD, t);
+        static bool check(string chuoiD, string val)
+        {
+           foreach (string s in chuoiD.Split())
+            {
+                if (s == val) return true;
+            }
+            
+           return false;
+        }
+        Console.WriteLine(ch);
+    }
+}
+
