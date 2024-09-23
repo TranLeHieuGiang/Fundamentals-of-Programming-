@@ -1,100 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp3
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        private void Main(string[] args)
+        bt01();
+        bt02();
+
+    }
+
+    static void bt01()
+    {
+        int[][] mang1 = new int[4][]
         {
-            bt01();
-            bt02();
-            bt03();
+            new int [] {1, 1, 1,1},
+            new int [] {2,2},
+            new int [] {3,3,3,3},
+            new int [] {4,4},
+        };
+        for (int i = 0; i < mang1.Length; i++)
+        {
+            for (int j = 0; j < mang1[i].Length; j++)
+                Console.Write(mang1[i][j] + " ");
+            Console.WriteLine();
+        }
+    }
+
+    //bt02
+    static void Print(int[][] a)
+    {
+        foreach (int[] rows in a)
+        {
+            foreach (int i in rows)
+            {
+                Console.Write($"{i} ");
+            }
+            Console.WriteLine();
         }
 
-        static void bt01()
+    }
+    static void bt02()
+    {
+        Console.Write("Nhap vao so hang: ");
+        int rows = Convert.ToInt32(Console.ReadLine());
+        int[][] a = new int[rows][];
+        Random rnd = new Random();
+        for (int i = 0; i < rows; i++)
         {
-            int m = max(1);
-            m = max(1, 2);
-            Console.WriteLine(m);
-            Console.ReadKey();
-        }
-        static int max(int a, params int[] args)
-        {
-            if (args.Length == 0)
-            {
-                return a;
-            }
-            int m = args[0];
-
-            foreach (int i in args)
-            {
-                if (i > m)
-                    m = i;
-            }
-            return Math.Max(m, a);
-        }
-        static void bt02()
-        {
-            long kq = factorial();
-            Console.WriteLine(kq);
-        }
-        static long factorial(int n)
-        {
-            long f = 1;
-            for (int i = 1; i <= n; i++)
-                f += i;
-            return f;
-        }
-        static long factorial_recursion(int n)
-        {
-            if (n == 0) return 1;
-            return n * factorial_recursion(n - 1);
+            Console.Write("Nhap vao hang: ");
+            int cols = Convert.ToInt32(Console.ReadLine());
+            a[i] = new int[cols];
+            for (int j = 0; j < cols; j++)
+                a[i][j] = rnd.Next(30, 50);
         }
 
-        static void bt03()
+        Print(a);
+        FindMax(a);
+        sort_row(a);
+
+        Console.WriteLine();
+        print_prime(a);
+        int k = Convert.ToInt32(Console.ReadLine());
+        
+
+    }
+    static void FindMax(int[][] a)
+    {
+        foreach (int[] rows in a)
         {
 
-            static bool Prime(int number)
+        }
+
+    }
+    static void sort_row(int[][] a)
+    {
+        for (int i = 0; i < a.Length; i++)
+            sort(a[i]);
+        foreach (int[] rows in a)
+        {
+            foreach (int i in rows)
             {
-                for (int i = 2; i <= number / 2; i++) ;
-                if (number % 1 == 0)
-                    return false;
+                Console.Write($"{i} ");
             }
-            static void PrimeuderN(int n)
+            Console.WriteLine();
+        }
+
+    }
+
+    static void sort(int[] a)
+    {
+        for (int i = 0; i < a.Length; i++)
+            for (int j = 0; j < a.Length; j++)
             {
-                for (int i = 1; i <= n; i++)
-                    if (Prime(i))
-                        Console.WriteLine(i);
-            }
-           
-            static void PrimeNnumber(int n)
-            
-            {
-                int count = 0;
-                int number = 1;
-                while (count <= n)
+                if (a[i] > a[j])
                 {
-                    if(Prime(number))
-                    {
-                        Console.WriteLine(number);
-                        count++;
-                    }
+                    int doi = a[i];
+                    a[i] = a[j];
+                    a[j] = doi;
+                }
+            }
+        foreach (int m in a)
+        {
+            Console.Write($"{m} ");
+        }
+    }
+
+
+    static void print_prime(int[][] a)
+    {
+        for (int i = 0; i < a.Length; i++)
+        {
+            for (int j = 0; j < a[i].Length; j++)
+                if (Prime(a[i][j]))
+                    Console.WriteLine($"{a[i][j]} xuat hien o hang {i} va cot {j} ");
+        }
+        static bool Prime(int nua)
+        {
+            for (int i = 2; i < nua / 2; i++)
+            {
+                if (nua % i == 0)
+                    return false;
+
+            }
+            return true;
+        }
+        TimSo(a,76);
+        static void TimSo(int[][] a, int value)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < a[i].Length; j++)
+                {
+                   if ((a[i][j]) == value)
+                    Console.WriteLine($"{a[i][j]} xuat hien o hang {i} va cot {j} ");
                 }
             }
 
+           
 
 
+            
         }
-
-
-
-
     }
 }
-
